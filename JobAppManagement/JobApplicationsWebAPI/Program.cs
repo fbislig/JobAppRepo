@@ -27,7 +27,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowSWAClient",
         policy => policy
             .WithOrigins(
-                "https://victorious-mud-0640a0210.2.azurestaticapps.net", // Production SWA
+                "https://calm-sand-03ccd8010.2.azurestaticapps.net", // Production SWA
                 "https://localhost:7122" // Local Blazor client
             )
             .AllowAnyHeader()

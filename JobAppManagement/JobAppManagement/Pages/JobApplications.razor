@@ -1,0 +1,502 @@
+﻿@page "/jobapplications"
+@inject IJobApplicationService JobApplicationService
+@inject IJSRuntime JS
+
+<h3 class="mb-3">Job Applications</h3>
+
+<!-- Collapsible File Import Button -->
+<button class="btn btn-secondary mb-3" type="button" data-bs-toggle="collapse" data-bs-target="#fileImportCollapse" aria-expanded="false" aria-controls="fileImportCollapse">
+    📂 File Import
+</button>
+
+<!-- File Import (Collapsible Panel) -->
+<div class="collapse" id="fileImportCollapse">
+    <div class="card card-body mb-3">
+        <InputFile OnChange="HandleFileSelected" accept=".xlsx" />
+        @if (!string.IsNullOrEmpty(selectedFileName))
+        {
+            <div class="mt-2">
+                <strong>Selected File:</strong> @selectedFileName
+            </div>
+            <button class="btn btn-success mt-2" @onclick="UploadFile" disabled="@isUploading">
+                @(isUploading ? "Uploading..." : "Upload")
+            </button>
+        }
+    </div>
+</div>
+
+<!-- Collapsible Add Job Button -->
+<button class="btn btn-primary mb-3" type="button" data-bs-toggle="collapse" data-bs-target="#addJobCollapse" aria-expanded="false" aria-controls="addJobCollapse">
+    + Add Job
+</button>
+
+<!-- Add new job application (Collapsible Panel) -->
+<div class="collapse" id="addJobCollapse">
+    <div class="card card-body mb-3">
+        <EditForm Model="newJob" OnValidSubmit="AddJob">
+            <DataAnnotationsValidator />
+            <div class="mb-2">
+                <label>Company</label>
+                <InputText class="form-control" @bind-Value="newJob.Company" />
+                <ValidationMessage For="@(() => newJob.Company)" />
+            </div>
+
+            <div class="mb-2">
+                <label>Position</label>
+                <InputText class="form-control" @bind-Value="newJob.Position" />
+                <ValidationMessage For="@(() => newJob.Position)" />
+            </div>
+
+            <div class="mb-2">
+                <label>Location</label>
+                <InputText class="form-control" @bind-Value="newJob.Location" />
+                <ValidationMessage For="@(() => newJob.Location)" />
+            </div>
+
+            <div class="mb-2">
+                <label>Date Applied</label>
+                <InputDate class="form-control" @bind-Value="newJob.DateApplied" />
+                <ValidationMessage For="@(() => newJob.DateApplied)" />
+            </div>
+
+           @*  <div class="mb-2">
+                <label>Status</label>
+                <InputSelect class="form-select" @bind-Value="newJob.Status">
+                    @foreach (var status in Enum.GetValues<Status>())
+                    {
+                        <option value="@status">@status</option>
+                    }
+                </InputSelect>
+                <ValidationMessage For="@(() => newJob.Status)" />
+            </div> *@
+
+            <button type="submit" class="btn btn-success">Add Job</button>
+        </EditForm>
+    </div>
+</div>
+
+<!-- Search Section -->
+<h4>Search Applications</h4>
+<div class="row mb-3">
+    <div class="col"><InputText class="form-control" placeholder="Company" @bind-Value="searchCriteria.Company" /></div>
+    <div class="col"><InputText class="form-control" placeholder="Position" @bind-Value="searchCriteria.Position" /></div>
+    <div class="col"><InputText class="form-control" placeholder="Location" @bind-Value="searchCriteria.Location" /></div>
+    <div class="col"><InputDate class="form-control" @bind-Value="searchCriteria.DateApplied" /></div>
+    <div class="col">
+        <InputSelect class="form-select" @bind-Value="searchCriteria.Status">
+            <option value="">-- Status --</option>
+            @foreach (var status in Enum.GetValues<Status>())
+            {
+                <option value="@status">@status</option>
+            }
+        </InputSelect>
+    </div>
+    <div class="col">
+        <button class="btn btn-primary" @onclick="ApplyFilters">Search</button>
+        <button class="btn btn-secondary" @onclick="ClearFilters">Clear</button>
+    </div>
+</div>
+
+<!-- Job applications table -->
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th @onclick="() => SortBy(nameof(JobApplication.Company))">
+                Company @(currentSortColumn == nameof(JobApplication.Company) ? (sortAscending ? "↑" : "↓") : "")
+            </th>
+            <th @onclick="() => SortBy(nameof(JobApplication.Position))">
+                Position @(currentSortColumn == nameof(JobApplication.Position) ? (sortAscending ? "↑" : "↓") : "")
+            </th>
+            <th @onclick="() => SortBy(nameof(JobApplication.Location))">
+                Location @(currentSortColumn == nameof(JobApplication.Location) ? (sortAscending ? "↑" : "↓") : "")
+            </th>
+            <th @onclick="() => SortBy(nameof(JobApplication.DateApplied))">
+                Date Applied @(currentSortColumn == nameof(JobApplication.DateApplied) ? (sortAscending ? "↑" : "↓") : "")
+            </th>
+            <th @onclick="() => SortBy(nameof(JobApplication.Status))">
+                Status @(currentSortColumn == nameof(JobApplication.Status) ? (sortAscending ? "↑" : "↓") : "")
+            </th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @if (PaginatedJobs?.Any() == true)
+        {
+            @foreach (var job in PaginatedJobs)
+            {
+                <tr @key="job.Id" id="row-@job.Id" class="@(job.Id == LastAddedJobId ? "highlight-row" : "")">
+                    @if (editJob?.Id == job.Id)
+                    {
+                        <td colspan="6">
+                            <EditForm Model="editJob" OnValidSubmit="SaveEdit">
+                                <DataAnnotationsValidator />
+                                <div class="row g-2">
+                                    <div class="col-md">
+                                        <InputText class="form-control mb-1" @bind-Value="editJob.Company" />
+                                        <ValidationMessage For="@(() => editJob.Company)" />
+                                    </div>
+                                    <div class="col-md">
+                                        <InputText class="form-control mb-1" @bind-Value="editJob.Position" />
+                                        <ValidationMessage For="@(() => editJob.Position)" />
+                                    </div>
+                                    <div class="col-md">
+                                        <InputText class="form-control mb-1" @bind-Value="editJob.Location" />
+                                        <ValidationMessage For="@(() => editJob.Location)" />
+                                    </div>
+                                    <div class="col-md">
+                                        <InputDate class="form-control mb-1" @bind-Value="editJob.DateApplied" />
+                                        <ValidationMessage For="@(() => editJob.DateApplied)" />
+                                    </div>
+                                    <div class="col-md">
+                                        <InputSelect class="form-select mb-1" @bind-Value="editJob.Status">
+                                            @foreach (var status in Enum.GetValues<Status>())
+                                            {
+                                                <option value="@status">@status</option>
+                                            }
+                                        </InputSelect>
+                                        <ValidationMessage For="@(() => editJob.Status)" />
+                                    </div>
+                                    <div class="col-md-auto d-flex align-items-end">
+                                        <button type="submit" class="btn btn-success btn-sm me-2">Save</button>
+                                        <button type="button" class="btn btn-secondary btn-sm" @onclick="CancelEdit">Cancel</button>
+                                    </div>
+                                </div>
+                            </EditForm>
+                        </td>
+                    }
+                    else
+                    {
+                        <td>@job.Company</td>
+                        <td>@job.Position</td>
+                        <td>@job.Location</td>
+                        <td>@job.DateApplied.ToShortDateString()</td>
+                        <td>@job.Status</td>
+                        <td>
+                            <button class="btn btn-warning btn-sm me-2" @onclick="@(() => EditJob(job))">Edit</button>
+                            <button class="btn btn-danger btn-sm" @onclick="@(() => PromptDelete(job))">Delete</button>
+                        </td>
+                    }
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="6" class="text-center">No job applications found.</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div class="d-flex justify-content-between align-items-center mt-2">
+    <span>Page @currentPage of @totalPages</span>
+    <div>
+        <button class="btn btn-sm btn-outline-primary me-1" @onclick="FirstPage" disabled="@(currentPage == 1)">First</button>
+        <button class="btn btn-sm btn-outline-primary me-1" @onclick="PreviousPage" disabled="@(currentPage == 1)">Previous</button>
+        <button class="btn btn-sm btn-outline-primary me-1" @onclick="NextPage" disabled="@(currentPage == totalPages)">Next</button>
+        <button class="btn btn-sm btn-outline-primary" @onclick="LastPage" disabled="@(currentPage == totalPages)">Last</button>
+    </div>
+</div>
+<br />
+<br />
+
+@if (showDeleteModal && jobToDelete != null)
+{
+    <ConfirmModal Title="Confirm Delete"
+                  Message="@($"Are you sure you want to delete the application for {jobToDelete.Company}?")"
+                  IsVisible="@showDeleteModal"
+                  OnResult="OnDeleteResult" />
+}
+
+@code {
+    private List<JobApplication>? jobApplications;
+    private JobApplication newJob = new();
+    private JobApplication? editJob;
+    private bool showDeleteModal = false;
+    private JobApplication? jobToDelete;
+    private JobSearchCriteria searchCriteria = new();
+    private List<JobApplication> filteredJobs = new();
+    private IBrowserFile? uploadedFile;
+    private string? selectedFileName;
+    private bool isUploading = false;
+    private int currentPage = 1;
+    private int pageSize = 10;
+    private int totalPages => (int)Math.Ceiling((double)(filteredJobs?.Count ?? 0) / pageSize);
+    private string currentSortColumn = nameof(JobApplication.DateApplied);
+    private bool sortAscending = true;
+    private int? LastAddedJobId { get; set; }
+
+    private IEnumerable<JobApplication> PaginatedJobs =>
+     filteredJobs?.Skip((currentPage - 1) * pageSize).Take(pageSize) ?? Enumerable.Empty<JobApplication>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            jobApplications = await JobApplicationService.GetAllJobsAsync();
+            //filteredJobs = new List<JobApplication>(jobApplications);
+            ApplyFilters();
+        }
+        catch (Exception ex)
+        {            
+            Console.Error.WriteLine($"Fetch failed: {ex.Message}");
+        }
+     
+    }
+
+    private void HandleFileSelected(InputFileChangeEventArgs e)
+    {
+        uploadedFile = e.File;
+        selectedFileName = uploadedFile?.Name;
+    }
+
+    private async Task UploadFile()
+    {
+        if (uploadedFile == null) return;
+
+        isUploading = true;
+
+        try
+        {
+            using var content = new MultipartFormDataContent();
+            var stream = uploadedFile.OpenReadStream(10_000_000); // limit 10 MB
+            content.Add(new StreamContent(stream), "file", uploadedFile.Name);
+
+            // Call your API (add ImportJobsAsync to your JobApplicationService)
+            await JobApplicationService.ImportJobsAsync(uploadedFile);
+
+            // Refresh jobs after import
+            jobApplications = await JobApplicationService.GetAllJobsAsync();
+            ApplyFilters();
+        }
+        catch (Exception ex)
+        {
+            Console.Error.WriteLine($"Upload failed: {ex.Message}");
+        }
+        finally
+        {
+            isUploading = false;
+            uploadedFile = null;
+            selectedFileName = null;
+        }
+    }
+    private async Task AddJob()
+    {
+        var addedJob = await JobApplicationService.AddJobAsync(newJob);
+        if (addedJob != null)
+        {
+            jobApplications.Add(addedJob);
+            ApplyFilters();
+
+            var index = filteredJobs.FindIndex(j => j.Id == addedJob.Id);
+            if (index >= 0)
+            {
+                currentPage = (index / pageSize) + 1;
+            }
+
+            LastAddedJobId = addedJob.Id;
+            StateHasChanged();
+
+            // Optional: remove highlight after 3 seconds
+            _ = Task.Delay(3000).ContinueWith(_ =>
+            {
+                LastAddedJobId = null;
+                InvokeAsync(StateHasChanged);
+            });
+        }
+        // Reset the form for next add WITH default Status
+        newJob = new JobApplication
+        {
+            Status = Status.Applied   // 👈 set your default here
+        }; 
+
+
+        
+    }
+
+    private void EditJob(JobApplication job)
+    {
+        editJob = new JobApplication
+        {
+            Id = job.Id,
+            Company = job.Company,
+            Position = job.Position,
+            Location = job.Location,
+            DateApplied = job.DateApplied,
+            Status = job.Status
+        };
+    }
+
+    
+    private async Task SaveEdit()
+    {
+        if (editJob is null) return;
+
+        // call API to update
+        await JobApplicationService.UpdateJobAsync(editJob);
+
+        // update local source of truth (jobApplications)
+        var idx = jobApplications.FindIndex(j => j.Id == editJob.Id);
+        if (idx >= 0)
+            jobApplications[idx] = new JobApplication
+            {
+                Id = editJob.Id,
+                Company = editJob.Company,
+                Position = editJob.Position,
+                Location = editJob.Location,
+                DateApplied = editJob.DateApplied,
+                Status = editJob.Status,
+                UserId = editJob.UserId
+            };
+
+        // reapply filters & sorting so filteredJobs is current
+        ApplyFilters();
+
+        // set the page so the edited item remains visible
+        var indexInFiltered = filteredJobs.FindIndex(j => j.Id == editJob.Id);
+        if (indexInFiltered >= 0)
+            currentPage = (indexInFiltered / pageSize) + 1;
+
+        // highlight + scroll into view
+        LastAddedJobId = editJob.Id;
+        await JS.InvokeVoidAsync("scrollRowIntoView", $"row-{LastAddedJobId}");
+
+        // close editor
+        editJob = null;
+
+        StateHasChanged();
+
+        // auto-clear highlight
+        _ = Task.Delay(3000).ContinueWith(_ =>
+        {
+            LastAddedJobId = null;
+            InvokeAsync(StateHasChanged);
+        });
+    }
+
+    private void CancelEdit() => editJob = null;
+
+    private void ApplyFilters()
+    {
+        if (jobApplications == null) return;
+        IEnumerable<JobApplication> query = jobApplications.Where(job =>
+         (string.IsNullOrWhiteSpace(searchCriteria.Company) || job.Company.Contains(searchCriteria.Company, StringComparison.OrdinalIgnoreCase)) &&
+         (string.IsNullOrWhiteSpace(searchCriteria.Position) || job.Position.Contains(searchCriteria.Position, StringComparison.OrdinalIgnoreCase)) &&
+         (string.IsNullOrWhiteSpace(searchCriteria.Location) || job.Location.Contains(searchCriteria.Location, StringComparison.OrdinalIgnoreCase)) &&
+         (!searchCriteria.DateApplied.HasValue || job.DateApplied.Date == searchCriteria.DateApplied.Value.Date) &&
+         (!searchCriteria.Status.HasValue || job.Status == searchCriteria.Status.Value)
+     );
+
+        // 🔹 Apply sorting
+        query = sortAscending
+            ? query.OrderBy(j => GetPropertyValue(j, currentSortColumn))
+            : query.OrderByDescending(j => GetPropertyValue(j, currentSortColumn));
+
+        filteredJobs = query.ToList();
+         currentPage = 1; // reset to first page
+    }
+
+    private object GetPropertyValue(JobApplication job, string propertyName)
+    {
+        var prop = typeof(JobApplication).GetProperty(propertyName);
+        var value = prop?.GetValue(job);
+
+        // ensure correct sorting for DateTime and enums
+        if (value is DateTime dt) return dt;
+        if (value is Enum en) return en.ToString();
+
+        return value?.ToString() ?? string.Empty;
+    }
+
+    private void ClearFilters()
+    {
+        searchCriteria = new JobSearchCriteria();
+        filteredJobs = new List<JobApplication>(jobApplications);
+        currentPage = 1;
+    }
+
+    private void PromptDelete(JobApplication job)
+    {
+        jobToDelete = job;
+        showDeleteModal = true;
+    }
+
+    private async Task OnDeleteResult(bool confirmed)
+    {
+        if (confirmed && jobToDelete != null)
+        {
+            await JobApplicationService.DeleteJobAsync(jobToDelete.Id);
+
+            // Find its index BEFORE removing
+            var index = filteredJobs.FindIndex(j => j.Id == jobToDelete.Id);
+
+            // Remove locally
+            jobApplications.RemoveAll(j => j.Id == jobToDelete.Id);
+
+            // Reapply filters + sorting
+            ApplyFilters();
+
+            if (filteredJobs.Any())
+            {
+                int highlightIndex = -1;
+                if (index >= filteredJobs.Count)
+                {
+                    LastAddedJobId = filteredJobs.Last().Id;
+                    highlightIndex = filteredJobs.Count - 1;
+                }
+                else if (index >= 0)
+                {
+                    LastAddedJobId = filteredJobs[index].Id;
+                    highlightIndex = index;
+                }
+
+                // Set page so highlighted row is visible
+                if (highlightIndex >= 0)
+                    currentPage = (highlightIndex / pageSize) + 1;
+
+                await JS.InvokeVoidAsync("scrollRowIntoView", $"row-{LastAddedJobId}");
+
+                _ = Task.Delay(3000).ContinueWith(_ =>
+                {
+                    LastAddedJobId = null;
+                    InvokeAsync(StateHasChanged);
+                });
+            }
+        }
+
+        showDeleteModal = false;
+        jobToDelete = null;
+    }
+
+     
+    private void FirstPage() => currentPage = 1;
+    private void LastPage() => currentPage = totalPages;
+    private void NextPage() { if (currentPage < totalPages) currentPage++; }
+    private void PreviousPage() { if (currentPage > 1) currentPage--; }
+
+    private void SortBy(string columnName)
+    {
+        if (currentSortColumn == columnName)
+        {
+            // toggle if same column clicked
+            sortAscending = !sortAscending;
+        }
+        else
+        {
+            // new column, start ascending
+            currentSortColumn = columnName;
+            sortAscending = true;
+        }
+
+        ApplyFilters(); // reapply filters + sorting
+    }
+
+    private async Task ScrollRowIntoView(int? jobId)
+    {
+        if (jobId.HasValue)
+        {
+            await JS.InvokeVoidAsync("scrollRowIntoView", jobId.Value);
+        }
+    }
+
+}

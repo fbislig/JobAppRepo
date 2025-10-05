@@ -1,0 +1,64 @@
+﻿@page "/jobstats"
+@using JobApplicationsShared.Models
+
+@inject IJobApplicationService JobApplicationService
+
+<h3>Job Application Status Statistics</h3>
+
+@if (StatusStats == null)
+{
+    <p><em>Loading...</em></p>
+}
+else if (!StatusStats.Any())
+{
+    <p>No job applications found.</p>
+}
+else
+{
+    <table class="table table-striped mt-4">
+        <thead>
+            <tr>
+                <th>Status</th>
+                <th>Count</th>
+                <th>Percentage</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var stat in StatusStats)
+            {
+                <tr>
+                    <td>@stat.Status</td>
+                    <td>@stat.Count</td>
+                    <td>@stat.Percentage.ToString("F2") %</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private List<JobStatusStat>? StatusStats;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var jobs = await JobApplicationService.GetAllJobsAsync();
+        var total = jobs.Count;
+
+        StatusStats = jobs
+            .GroupBy(j => j.Status.ToString())
+            .Select(g => new JobStatusStat
+            {
+                Status = g.Key,
+                Count = g.Count(),
+                Percentage = total > 0 ? (double)g.Count() / total * 100 : 0
+            })
+            .ToList();
+    }
+
+    private class JobStatusStat
+    {
+        public string Status { get; set; } = string.Empty;
+        public int Count { get; set; }
+        public double Percentage { get; set; }
+    }
+}

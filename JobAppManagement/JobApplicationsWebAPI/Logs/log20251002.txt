@@ -1,0 +1,376 @@
+2025-10-02 21:20:43.973 -04:00 [INF] Now listening on: https://localhost:7040
+2025-10-02 21:20:44.030 -04:00 [INF] Now listening on: http://localhost:5089
+2025-10-02 21:20:44.084 -04:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-10-02 21:20:44.086 -04:00 [INF] Hosting environment: Development
+2025-10-02 21:20:44.087 -04:00 [INF] Content root path: C:\Blazor\JobTrackingApp\JobAppManagement\JobApplicationsWebAPI
+2025-10-02 21:20:44.578 -04:00 [INF] Request starting HTTP/2 GET https://localhost:7040/swagger/index.html - null null
+2025-10-02 21:20:44.791 -04:00 [INF] Request finished HTTP/2 GET https://localhost:7040/swagger/index.html - 200 null text/html;charset=utf-8 212.7837ms
+2025-10-02 21:20:44.957 -04:00 [INF] Request starting HTTP/2 GET https://localhost:7040/_framework/aspnetcore-browser-refresh.js - null null
+2025-10-02 21:20:44.957 -04:00 [INF] Request starting HTTP/2 GET https://localhost:7040/_vs/browserLink - null null
+2025-10-02 21:20:44.973 -04:00 [INF] Request finished HTTP/2 GET https://localhost:7040/_framework/aspnetcore-browser-refresh.js - 200 16527 application/javascript; charset=utf-8 15.4087ms
+2025-10-02 21:20:45.021 -04:00 [INF] Request finished HTTP/2 GET https://localhost:7040/_vs/browserLink - 200 null text/javascript; charset=UTF-8 64.0099ms
+2025-10-02 21:20:45.090 -04:00 [INF] Request starting HTTP/2 GET https://localhost:7040/swagger/v1/swagger.json - null null
+2025-10-02 21:20:45.110 -04:00 [INF] Request finished HTTP/2 GET https://localhost:7040/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 19.9413ms
+2025-10-02 21:20:45.117 -04:00 [INF] Request starting HTTP/2 GET https://localhost:7040/swagger/favicon-32x32.png - null null
+2025-10-02 21:20:45.133 -04:00 [INF] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+2025-10-02 21:20:45.138 -04:00 [INF] Request finished HTTP/2 GET https://localhost:7040/swagger/favicon-32x32.png - 200 628 image/png 20.8932ms
+2025-10-02 21:27:34.310 -04:00 [INF] Now listening on: https://localhost:7040
+2025-10-02 21:27:34.348 -04:00 [INF] Now listening on: http://localhost:5089
+2025-10-02 21:27:34.386 -04:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-10-02 21:27:34.388 -04:00 [INF] Hosting environment: Development
+2025-10-02 21:27:34.389 -04:00 [INF] Content root path: C:\Blazor\JobTrackingApp\JobAppManagement\JobApplicationsWebAPI
+2025-10-02 21:27:35.407 -04:00 [INF] Request starting HTTP/2 GET https://localhost:7040/swagger/index.html - null null
+2025-10-02 21:27:35.612 -04:00 [INF] Request finished HTTP/2 GET https://localhost:7040/swagger/index.html - 200 null text/html;charset=utf-8 206.9737ms
+2025-10-02 21:27:35.619 -04:00 [INF] Request starting HTTP/2 GET https://localhost:7040/_framework/aspnetcore-browser-refresh.js - null null
+2025-10-02 21:27:35.639 -04:00 [INF] Request finished HTTP/2 GET https://localhost:7040/_framework/aspnetcore-browser-refresh.js - 200 16527 application/javascript; charset=utf-8 20.4121ms
+2025-10-02 21:27:35.706 -04:00 [INF] Request starting HTTP/2 GET https://localhost:7040/_vs/browserLink - null null
+2025-10-02 21:27:35.764 -04:00 [INF] Request finished HTTP/2 GET https://localhost:7040/_vs/browserLink - 200 null text/javascript; charset=UTF-8 58.0159ms
+2025-10-02 21:27:35.847 -04:00 [INF] Request starting HTTP/2 GET https://localhost:7040/swagger/v1/swagger.json - null null
+2025-10-02 21:27:35.864 -04:00 [INF] Request finished HTTP/2 GET https://localhost:7040/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 17.4183ms
+2025-10-02 21:33:05.423 -04:00 [INF] Now listening on: https://localhost:7040
+2025-10-02 21:33:05.458 -04:00 [INF] Now listening on: http://localhost:5089
+2025-10-02 21:33:05.499 -04:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-10-02 21:33:05.500 -04:00 [INF] Hosting environment: Development
+2025-10-02 21:33:05.501 -04:00 [INF] Content root path: C:\Blazor\JobTrackingApp\JobAppManagement\JobApplicationsWebAPI
+2025-10-02 21:33:06.414 -04:00 [INF] Request starting HTTP/2 GET https://localhost:7040/swagger/index.html - null null
+2025-10-02 21:33:06.605 -04:00 [INF] Request finished HTTP/2 GET https://localhost:7040/swagger/index.html - 200 null text/html;charset=utf-8 192.7367ms
+2025-10-02 21:33:06.620 -04:00 [INF] Request starting HTTP/2 GET https://localhost:7040/_framework/aspnetcore-browser-refresh.js - null null
+2025-10-02 21:33:06.639 -04:00 [INF] Request finished HTTP/2 GET https://localhost:7040/_framework/aspnetcore-browser-refresh.js - 200 16527 application/javascript; charset=utf-8 19.0483ms
+2025-10-02 21:33:06.713 -04:00 [INF] Request starting HTTP/2 GET https://localhost:7040/_vs/browserLink - null null
+2025-10-02 21:33:06.792 -04:00 [INF] Request finished HTTP/2 GET https://localhost:7040/_vs/browserLink - 200 null text/javascript; charset=UTF-8 78.4034ms
+2025-10-02 21:33:06.866 -04:00 [INF] Request starting HTTP/2 GET https://localhost:7040/swagger/v1/swagger.json - null null
+2025-10-02 21:33:06.889 -04:00 [INF] Request finished HTTP/2 GET https://localhost:7040/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 23.5521ms
+2025-10-02 21:35:12.838 -04:00 [INF] Now listening on: https://localhost:7040
+2025-10-02 21:35:12.879 -04:00 [INF] Now listening on: http://localhost:5089
+2025-10-02 21:35:12.919 -04:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-10-02 21:35:12.920 -04:00 [INF] Hosting environment: Development
+2025-10-02 21:35:12.921 -04:00 [INF] Content root path: C:\Blazor\JobTrackingApp\JobAppManagement\JobApplicationsWebAPI
+2025-10-02 21:35:13.826 -04:00 [INF] Request starting HTTP/2 GET https://localhost:7040/swagger/index.html - null null
+2025-10-02 21:35:14.043 -04:00 [INF] Request finished HTTP/2 GET https://localhost:7040/swagger/index.html - 200 null text/html;charset=utf-8 217.9478ms
+2025-10-02 21:35:14.054 -04:00 [INF] Request starting HTTP/2 GET https://localhost:7040/_framework/aspnetcore-browser-refresh.js - null null
+2025-10-02 21:35:14.087 -04:00 [INF] Request finished HTTP/2 GET https://localhost:7040/_framework/aspnetcore-browser-refresh.js - 200 16527 application/javascript; charset=utf-8 33.7247ms
+2025-10-02 21:35:14.164 -04:00 [INF] Request starting HTTP/2 GET https://localhost:7040/_vs/browserLink - null null
+2025-10-02 21:35:14.228 -04:00 [INF] Request finished HTTP/2 GET https://localhost:7040/_vs/browserLink - 200 null text/javascript; charset=UTF-8 64.3516ms
+2025-10-02 21:35:14.305 -04:00 [INF] Request starting HTTP/2 GET https://localhost:7040/swagger/v1/swagger.json - null null
+2025-10-02 21:35:14.338 -04:00 [INF] Request finished HTTP/2 GET https://localhost:7040/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 33.4111ms
+2025-10-02 21:41:29.826 -04:00 [INF] Now listening on: https://localhost:7040
+2025-10-02 21:41:29.869 -04:00 [INF] Now listening on: http://localhost:5089
+2025-10-02 21:41:29.915 -04:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-10-02 21:41:29.916 -04:00 [INF] Hosting environment: Development
+2025-10-02 21:41:29.921 -04:00 [INF] Content root path: C:\Blazor\JobTrackingApp\JobAppManagement\JobApplicationsWebAPI
+2025-10-02 21:41:31.028 -04:00 [INF] Request starting HTTP/2 GET https://localhost:7040/swagger/index.html - null null
+2025-10-02 21:41:31.318 -04:00 [INF] Request finished HTTP/2 GET https://localhost:7040/swagger/index.html - 200 null text/html;charset=utf-8 291.0569ms
+2025-10-02 21:41:31.443 -04:00 [INF] Request starting HTTP/2 GET https://localhost:7040/_framework/aspnetcore-browser-refresh.js - null null
+2025-10-02 21:41:31.444 -04:00 [INF] Request starting HTTP/2 GET https://localhost:7040/_vs/browserLink - null null
+2025-10-02 21:41:31.453 -04:00 [INF] Request finished HTTP/2 GET https://localhost:7040/_framework/aspnetcore-browser-refresh.js - 200 16527 application/javascript; charset=utf-8 9.74ms
+2025-10-02 21:41:31.494 -04:00 [INF] Request finished HTTP/2 GET https://localhost:7040/_vs/browserLink - 200 null text/javascript; charset=UTF-8 50.2171ms
+2025-10-02 21:41:31.595 -04:00 [INF] Request starting HTTP/2 GET https://localhost:7040/swagger/v1/swagger.json - null null
+2025-10-02 21:41:31.614 -04:00 [INF] Request finished HTTP/2 GET https://localhost:7040/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 19.5779ms
+2025-10-02 21:41:43.397 -04:00 [INF] Request starting HTTP/2 GET https://localhost:7040/api/jobapplications - null null
+2025-10-02 21:41:43.420 -04:00 [INF] CORS policy execution successful.
+2025-10-02 21:41:43.427 -04:00 [INF] Executing endpoint 'JobApplicationsWebAPI.Controllers.JobApplicationsController.GetAll (JobApplicationsWebAPI)'
+2025-10-02 21:41:43.445 -04:00 [INF] Route matched with {action = "GetAll", controller = "JobApplications"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IEnumerable`1[JobApplicationsShared.Models.JobApplication]]] GetAll() on controller JobApplicationsWebAPI.Controllers.JobApplicationsController (JobApplicationsWebAPI).
+2025-10-02 21:41:46.953 -04:00 [INF] Fetching all job applications.
+2025-10-02 21:41:55.069 -04:00 [INF] Executed DbCommand (9ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "j"."Id", "j"."Company", "j"."DateApplied", "j"."Location", "j"."Position", "j"."Status", "j"."UserId"
+FROM "JobApplications" AS "j"
+2025-10-02 21:42:01.672 -04:00 [INF] Retrieved 26 job applications.
+2025-10-02 21:42:01.679 -04:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[JobApplicationsShared.Models.JobApplication, JobApplicationsShared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-10-02 21:42:01.695 -04:00 [INF] Executed action JobApplicationsWebAPI.Controllers.JobApplicationsController.GetAll (JobApplicationsWebAPI) in 18243.7894ms
+2025-10-02 21:42:01.697 -04:00 [INF] Executed endpoint 'JobApplicationsWebAPI.Controllers.JobApplicationsController.GetAll (JobApplicationsWebAPI)'
+2025-10-02 21:42:01.703 -04:00 [INF] Request finished HTTP/2 GET https://localhost:7040/api/jobapplications - 200 null application/json; charset=utf-8 18306.0062ms
+2025-10-02 21:42:41.144 -04:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7040/api/jobapplications - null null
+2025-10-02 21:42:41.152 -04:00 [INF] CORS policy execution successful.
+2025-10-02 21:42:41.154 -04:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7040/api/jobapplications - 204 null null 10.5603ms
+2025-10-02 21:42:41.156 -04:00 [INF] Request starting HTTP/2 POST https://localhost:7040/api/jobapplications - application/json; charset=utf-8 124
+2025-10-02 21:42:41.161 -04:00 [INF] CORS policy execution successful.
+2025-10-02 21:42:41.162 -04:00 [INF] Executing endpoint 'JobApplicationsWebAPI.Controllers.JobApplicationsController.Create (JobApplicationsWebAPI)'
+2025-10-02 21:42:41.170 -04:00 [INF] Route matched with {action = "Create", controller = "JobApplications"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[JobApplicationsShared.Models.JobApplication]] Create(JobApplicationsShared.Models.JobApplication) on controller JobApplicationsWebAPI.Controllers.JobApplicationsController (JobApplicationsWebAPI).
+2025-10-02 21:42:41.198 -04:00 [INF] Received request to create a new job application for company: test, position: test
+2025-10-02 21:42:41.301 -04:00 [INF] Executed DbCommand (6ms) [Parameters=[@p0='?' (Size = 4), @p1='?' (DbType = DateTime), @p2='?', @p3='?' (Size = 4), @p4='?' (DbType = Int32), @p5='?'], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "JobApplications" ("Company", "DateApplied", "Location", "Position", "Status", "UserId")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5)
+RETURNING "Id";
+2025-10-02 21:42:41.334 -04:00 [INF] Successfully created job application with ID 62
+2025-10-02 21:42:41.336 -04:00 [INF] Executing CreatedAtActionResult, writing value of type 'JobApplicationsShared.Models.JobApplication'.
+2025-10-02 21:42:41.348 -04:00 [INF] Executed action JobApplicationsWebAPI.Controllers.JobApplicationsController.Create (JobApplicationsWebAPI) in 174.9169ms
+2025-10-02 21:42:41.351 -04:00 [INF] Executed endpoint 'JobApplicationsWebAPI.Controllers.JobApplicationsController.Create (JobApplicationsWebAPI)'
+2025-10-02 21:42:41.353 -04:00 [INF] Request finished HTTP/2 POST https://localhost:7040/api/jobapplications - 201 null application/json; charset=utf-8 196.9162ms
+2025-10-02 21:42:49.931 -04:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7040/api/jobapplications/62 - null null
+2025-10-02 21:42:49.935 -04:00 [INF] CORS policy execution successful.
+2025-10-02 21:42:49.936 -04:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7040/api/jobapplications/62 - 204 null null 5.7194ms
+2025-10-02 21:42:49.938 -04:00 [INF] Request starting HTTP/2 PUT https://localhost:7040/api/jobapplications/62 - application/json; charset=utf-8 126
+2025-10-02 21:42:49.942 -04:00 [INF] CORS policy execution successful.
+2025-10-02 21:42:49.943 -04:00 [INF] Executing endpoint 'JobApplicationsWebAPI.Controllers.JobApplicationsController.Update (JobApplicationsWebAPI)'
+2025-10-02 21:42:49.948 -04:00 [INF] Route matched with {action = "Update", controller = "JobApplications"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[JobApplicationsShared.Models.JobApplication]] Update(Int32, JobApplicationsShared.Models.JobApplication) on controller JobApplicationsWebAPI.Controllers.JobApplicationsController (JobApplicationsWebAPI).
+2025-10-02 21:42:49.955 -04:00 [INF] Attempting to update job application with ID 62
+2025-10-02 21:42:50.075 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "j"."Id", "j"."Company", "j"."DateApplied", "j"."Location", "j"."Position", "j"."Status", "j"."UserId"
+FROM "JobApplications" AS "j"
+WHERE "j"."Id" = @__p_0
+LIMIT 1
+2025-10-02 21:42:50.085 -04:00 [INF] Executed DbCommand (2ms) [Parameters=[@p3='?' (DbType = Int32), @p0='?' (Size = 5), @p1='?' (Size = 1), @p2='?' (Size = 5)], CommandType='"Text"', CommandTimeout='30']
+UPDATE "JobApplications" SET "Company" = @p0, "Location" = @p1, "Position" = @p2
+WHERE "Id" = @p3
+RETURNING 1;
+2025-10-02 21:42:50.100 -04:00 [INF] Successfully updated job application with ID 62
+2025-10-02 21:42:50.102 -04:00 [INF] Executing OkObjectResult, writing value of type 'JobApplicationsShared.Models.JobApplication'.
+2025-10-02 21:42:50.104 -04:00 [INF] Executed action JobApplicationsWebAPI.Controllers.JobApplicationsController.Update (JobApplicationsWebAPI) in 152.339ms
+2025-10-02 21:42:50.105 -04:00 [INF] Executed endpoint 'JobApplicationsWebAPI.Controllers.JobApplicationsController.Update (JobApplicationsWebAPI)'
+2025-10-02 21:42:50.107 -04:00 [INF] Request finished HTTP/2 PUT https://localhost:7040/api/jobapplications/62 - 200 null application/json; charset=utf-8 169.1304ms
+2025-10-02 21:42:53.379 -04:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7040/api/jobapplications/62 - null null
+2025-10-02 21:42:53.384 -04:00 [INF] CORS policy execution successful.
+2025-10-02 21:42:53.385 -04:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7040/api/jobapplications/62 - 204 null null 5.6346ms
+2025-10-02 21:42:53.386 -04:00 [INF] Request starting HTTP/2 DELETE https://localhost:7040/api/jobapplications/62 - null null
+2025-10-02 21:42:53.390 -04:00 [INF] CORS policy execution successful.
+2025-10-02 21:42:53.391 -04:00 [INF] Executing endpoint 'JobApplicationsWebAPI.Controllers.JobApplicationsController.Delete (JobApplicationsWebAPI)'
+2025-10-02 21:42:53.397 -04:00 [INF] Route matched with {action = "Delete", controller = "JobApplications"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Delete(Int32) on controller JobApplicationsWebAPI.Controllers.JobApplicationsController (JobApplicationsWebAPI).
+2025-10-02 21:42:53.401 -04:00 [INF] Attempting to delete job application with ID 62
+2025-10-02 21:42:53.407 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "j"."Id", "j"."Company", "j"."DateApplied", "j"."Location", "j"."Position", "j"."Status", "j"."UserId"
+FROM "JobApplications" AS "j"
+WHERE "j"."Id" = @__p_0
+LIMIT 1
+2025-10-02 21:42:53.416 -04:00 [INF] Executed DbCommand (2ms) [Parameters=[@p0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+DELETE FROM "JobApplications"
+WHERE "Id" = @p0
+RETURNING 1;
+2025-10-02 21:42:53.432 -04:00 [INF] Successfully deleted job application with ID 62
+2025-10-02 21:42:53.436 -04:00 [INF] Executing StatusCodeResult, setting HTTP status code 204
+2025-10-02 21:42:53.437 -04:00 [INF] Executed action JobApplicationsWebAPI.Controllers.JobApplicationsController.Delete (JobApplicationsWebAPI) in 36.9409ms
+2025-10-02 21:42:53.438 -04:00 [INF] Executed endpoint 'JobApplicationsWebAPI.Controllers.JobApplicationsController.Delete (JobApplicationsWebAPI)'
+2025-10-02 21:42:53.439 -04:00 [INF] Request finished HTTP/2 DELETE https://localhost:7040/api/jobapplications/62 - 204 null null 52.8534ms
+2025-10-02 21:43:03.931 -04:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7040/api/jobapplications/import - null null
+2025-10-02 21:43:03.935 -04:00 [INF] CORS policy execution successful.
+2025-10-02 21:43:03.936 -04:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7040/api/jobapplications/import - 204 null null 4.5074ms
+2025-10-02 21:43:03.937 -04:00 [INF] Request starting HTTP/2 POST https://localhost:7040/api/jobapplications/import - multipart/form-data; boundary="05cb44d1-b585-4847-9865-bbef521a962f" 11397
+2025-10-02 21:43:03.949 -04:00 [INF] CORS policy execution successful.
+2025-10-02 21:43:03.950 -04:00 [INF] Executing endpoint 'JobApplicationsWebAPI.Controllers.JobApplicationsController.Import (JobApplicationsWebAPI)'
+2025-10-02 21:43:03.954 -04:00 [INF] Route matched with {action = "Import", controller = "JobApplications"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Import(Microsoft.AspNetCore.Http.IFormFile) on controller JobApplicationsWebAPI.Controllers.JobApplicationsController (JobApplicationsWebAPI).
+2025-10-02 21:43:04.438 -04:00 [INF] Starting import of job applications.
+2025-10-02 21:43:07.485 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[@__company_0='?' (Size = 3), @__position_1='?' (Size = 11)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "JobApplications" AS "j"
+    WHERE "j"."Company" = @__company_0 AND "j"."Position" = @__position_1)
+2025-10-02 21:43:07.490 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[@__company_0='?' (Size = 6), @__position_1='?' (Size = 11)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "JobApplications" AS "j"
+    WHERE "j"."Company" = @__company_0 AND "j"."Position" = @__position_1)
+2025-10-02 21:43:07.493 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[@__company_0='?' (Size = 7), @__position_1='?' (Size = 11)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "JobApplications" AS "j"
+    WHERE "j"."Company" = @__company_0 AND "j"."Position" = @__position_1)
+2025-10-02 21:43:07.497 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[@__company_0='?' (Size = 11), @__position_1='?' (Size = 11)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "JobApplications" AS "j"
+    WHERE "j"."Company" = @__company_0 AND "j"."Position" = @__position_1)
+2025-10-02 21:43:07.500 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[@__company_0='?' (Size = 11), @__position_1='?' (Size = 11)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "JobApplications" AS "j"
+    WHERE "j"."Company" = @__company_0 AND "j"."Position" = @__position_1)
+2025-10-02 21:43:07.503 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[@__company_0='?' (Size = 8), @__position_1='?' (Size = 11)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "JobApplications" AS "j"
+    WHERE "j"."Company" = @__company_0 AND "j"."Position" = @__position_1)
+2025-10-02 21:43:07.506 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[@__company_0='?' (Size = 3), @__position_1='?' (Size = 11)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "JobApplications" AS "j"
+    WHERE "j"."Company" = @__company_0 AND "j"."Position" = @__position_1)
+2025-10-02 21:43:07.510 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[@__company_0='?' (Size = 6), @__position_1='?' (Size = 11)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "JobApplications" AS "j"
+    WHERE "j"."Company" = @__company_0 AND "j"."Position" = @__position_1)
+2025-10-02 21:43:07.513 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[@__company_0='?' (Size = 8), @__position_1='?' (Size = 19)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "JobApplications" AS "j"
+    WHERE "j"."Company" = @__company_0 AND "j"."Position" = @__position_1)
+2025-10-02 21:43:07.516 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[@__company_0='?' (Size = 9), @__position_1='?' (Size = 19)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "JobApplications" AS "j"
+    WHERE "j"."Company" = @__company_0 AND "j"."Position" = @__position_1)
+2025-10-02 21:43:07.518 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[@__company_0='?' (Size = 13), @__position_1='?' (Size = 15)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "JobApplications" AS "j"
+    WHERE "j"."Company" = @__company_0 AND "j"."Position" = @__position_1)
+2025-10-02 21:43:07.521 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[@__company_0='?' (Size = 13), @__position_1='?' (Size = 23)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "JobApplications" AS "j"
+    WHERE "j"."Company" = @__company_0 AND "j"."Position" = @__position_1)
+2025-10-02 21:43:07.523 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[@__company_0='?' (Size = 7), @__position_1='?' (Size = 19)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "JobApplications" AS "j"
+    WHERE "j"."Company" = @__company_0 AND "j"."Position" = @__position_1)
+2025-10-02 21:43:07.527 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[@__company_0='?' (Size = 9), @__position_1='?' (Size = 19)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "JobApplications" AS "j"
+    WHERE "j"."Company" = @__company_0 AND "j"."Position" = @__position_1)
+2025-10-02 21:43:07.530 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[@__company_0='?' (Size = 17), @__position_1='?' (Size = 22)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "JobApplications" AS "j"
+    WHERE "j"."Company" = @__company_0 AND "j"."Position" = @__position_1)
+2025-10-02 21:43:07.533 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[@__company_0='?' (Size = 13), @__position_1='?' (Size = 19)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "JobApplications" AS "j"
+    WHERE "j"."Company" = @__company_0 AND "j"."Position" = @__position_1)
+2025-10-02 21:43:07.535 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[@__company_0='?' (Size = 7), @__position_1='?' (Size = 19)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "JobApplications" AS "j"
+    WHERE "j"."Company" = @__company_0 AND "j"."Position" = @__position_1)
+2025-10-02 21:43:07.538 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[@__company_0='?' (Size = 8), @__position_1='?' (Size = 19)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "JobApplications" AS "j"
+    WHERE "j"."Company" = @__company_0 AND "j"."Position" = @__position_1)
+2025-10-02 21:43:07.541 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[@__company_0='?' (Size = 14), @__position_1='?' (Size = 13)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "JobApplications" AS "j"
+    WHERE "j"."Company" = @__company_0 AND "j"."Position" = @__position_1)
+2025-10-02 21:43:07.545 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[@__company_0='?' (Size = 14), @__position_1='?' (Size = 13)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "JobApplications" AS "j"
+    WHERE "j"."Company" = @__company_0 AND "j"."Position" = @__position_1)
+2025-10-02 21:43:07.547 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[@__company_0='?' (Size = 18), @__position_1='?' (Size = 19)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "JobApplications" AS "j"
+    WHERE "j"."Company" = @__company_0 AND "j"."Position" = @__position_1)
+2025-10-02 21:43:07.550 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[@__company_0='?' (Size = 15), @__position_1='?' (Size = 19)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "JobApplications" AS "j"
+    WHERE "j"."Company" = @__company_0 AND "j"."Position" = @__position_1)
+2025-10-02 21:43:07.552 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[@__company_0='?' (Size = 11), @__position_1='?' (Size = 19)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "JobApplications" AS "j"
+    WHERE "j"."Company" = @__company_0 AND "j"."Position" = @__position_1)
+2025-10-02 21:43:07.555 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[@__company_0='?' (Size = 7), @__position_1='?' (Size = 19)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "JobApplications" AS "j"
+    WHERE "j"."Company" = @__company_0 AND "j"."Position" = @__position_1)
+2025-10-02 21:43:07.559 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[@__company_0='?' (Size = 4), @__position_1='?' (Size = 19)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "JobApplications" AS "j"
+    WHERE "j"."Company" = @__company_0 AND "j"."Position" = @__position_1)
+2025-10-02 21:43:07.562 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[@__company_0='?' (Size = 7), @__position_1='?' (Size = 19)], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "JobApplications" AS "j"
+    WHERE "j"."Company" = @__company_0 AND "j"."Position" = @__position_1)
+2025-10-02 21:43:07.564 -04:00 [INF] No records imported.
+2025-10-02 21:43:07.569 -04:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType2`2[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-10-02 21:43:07.573 -04:00 [INF] Executed action JobApplicationsWebAPI.Controllers.JobApplicationsController.Import (JobApplicationsWebAPI) in 3617.2667ms
+2025-10-02 21:43:07.576 -04:00 [INF] Executed endpoint 'JobApplicationsWebAPI.Controllers.JobApplicationsController.Import (JobApplicationsWebAPI)'
+2025-10-02 21:43:07.578 -04:00 [INF] Request finished HTTP/2 POST https://localhost:7040/api/jobapplications/import - 200 null application/json; charset=utf-8 3640.5495ms
+2025-10-02 21:43:11.387 -04:00 [INF] Request starting HTTP/2 GET https://localhost:7040/api/jobapplications - null null
+2025-10-02 21:43:11.391 -04:00 [INF] CORS policy execution successful.
+2025-10-02 21:43:11.392 -04:00 [INF] Executing endpoint 'JobApplicationsWebAPI.Controllers.JobApplicationsController.GetAll (JobApplicationsWebAPI)'
+2025-10-02 21:43:11.393 -04:00 [INF] Route matched with {action = "GetAll", controller = "JobApplications"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IEnumerable`1[JobApplicationsShared.Models.JobApplication]]] GetAll() on controller JobApplicationsWebAPI.Controllers.JobApplicationsController (JobApplicationsWebAPI).
+2025-10-02 21:43:14.717 -04:00 [INF] Fetching all job applications.
+2025-10-02 21:43:17.345 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "j"."Id", "j"."Company", "j"."DateApplied", "j"."Location", "j"."Position", "j"."Status", "j"."UserId"
+FROM "JobApplications" AS "j"
+2025-10-02 21:43:32.697 -04:00 [INF] Retrieved 26 job applications.
+2025-10-02 21:43:32.699 -04:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[JobApplicationsShared.Models.JobApplication, JobApplicationsShared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-10-02 21:43:32.703 -04:00 [INF] Executed action JobApplicationsWebAPI.Controllers.JobApplicationsController.GetAll (JobApplicationsWebAPI) in 21306.2588ms
+2025-10-02 21:43:32.705 -04:00 [INF] Executed endpoint 'JobApplicationsWebAPI.Controllers.JobApplicationsController.GetAll (JobApplicationsWebAPI)'
+2025-10-02 21:43:32.707 -04:00 [INF] Request finished HTTP/2 GET https://localhost:7040/api/jobapplications - 200 null application/json; charset=utf-8 21319.9776ms
+2025-10-02 21:43:53.302 -04:00 [INF] Request starting HTTP/2 GET https://localhost:7040/api/jobapplications - null null
+2025-10-02 21:43:53.313 -04:00 [INF] CORS policy execution successful.
+2025-10-02 21:43:53.315 -04:00 [INF] Executing endpoint 'JobApplicationsWebAPI.Controllers.JobApplicationsController.GetAll (JobApplicationsWebAPI)'
+2025-10-02 21:43:53.317 -04:00 [INF] Route matched with {action = "GetAll", controller = "JobApplications"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IEnumerable`1[JobApplicationsShared.Models.JobApplication]]] GetAll() on controller JobApplicationsWebAPI.Controllers.JobApplicationsController (JobApplicationsWebAPI).
+2025-10-02 21:43:54.040 -04:00 [INF] Fetching all job applications.
+2025-10-02 21:43:55.447 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "j"."Id", "j"."Company", "j"."DateApplied", "j"."Location", "j"."Position", "j"."Status", "j"."UserId"
+FROM "JobApplications" AS "j"
+2025-10-02 21:43:56.161 -04:00 [INF] Retrieved 26 job applications.
+2025-10-02 21:43:56.164 -04:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[JobApplicationsShared.Models.JobApplication, JobApplicationsShared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-10-02 21:43:56.166 -04:00 [INF] Executed action JobApplicationsWebAPI.Controllers.JobApplicationsController.GetAll (JobApplicationsWebAPI) in 2846.7033ms
+2025-10-02 21:43:56.169 -04:00 [INF] Executed endpoint 'JobApplicationsWebAPI.Controllers.JobApplicationsController.GetAll (JobApplicationsWebAPI)'
+2025-10-02 21:43:56.170 -04:00 [INF] Request finished HTTP/2 GET https://localhost:7040/api/jobapplications - 200 null application/json; charset=utf-8 2868.4779ms
+2025-10-02 21:51:47.409 -04:00 [INF] Now listening on: https://localhost:7040
+2025-10-02 21:51:47.444 -04:00 [INF] Now listening on: http://localhost:5089
+2025-10-02 21:51:47.485 -04:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-10-02 21:51:47.486 -04:00 [INF] Hosting environment: Development
+2025-10-02 21:51:47.487 -04:00 [INF] Content root path: C:\Blazor\JobTrackingApp\JobAppManagement\JobApplicationsWebAPI
+2025-10-02 21:51:48.478 -04:00 [INF] Request starting HTTP/2 GET https://localhost:7040/swagger/index.html - null null
+2025-10-02 21:51:48.716 -04:00 [INF] Request finished HTTP/2 GET https://localhost:7040/swagger/index.html - 200 null text/html;charset=utf-8 240.7626ms
+2025-10-02 21:51:48.905 -04:00 [INF] Request starting HTTP/2 GET https://localhost:7040/_vs/browserLink - null null
+2025-10-02 21:51:48.905 -04:00 [INF] Request starting HTTP/2 GET https://localhost:7040/_framework/aspnetcore-browser-refresh.js - null null
+2025-10-02 21:51:48.929 -04:00 [INF] Request finished HTTP/2 GET https://localhost:7040/_framework/aspnetcore-browser-refresh.js - 200 16527 application/javascript; charset=utf-8 20.7579ms
+2025-10-02 21:51:48.965 -04:00 [INF] Request finished HTTP/2 GET https://localhost:7040/_vs/browserLink - 200 null text/javascript; charset=UTF-8 60.4484ms
+2025-10-02 21:51:49.070 -04:00 [INF] Request starting HTTP/2 GET https://localhost:7040/swagger/v1/swagger.json - null null
+2025-10-02 21:51:49.093 -04:00 [INF] Request finished HTTP/2 GET https://localhost:7040/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 23.5587ms
+2025-10-02 21:53:52.781 -04:00 [INF] Now listening on: https://localhost:7040
+2025-10-02 21:53:52.816 -04:00 [INF] Now listening on: http://localhost:5089
+2025-10-02 21:53:52.859 -04:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-10-02 21:53:52.861 -04:00 [INF] Hosting environment: Development
+2025-10-02 21:53:52.862 -04:00 [INF] Content root path: C:\Blazor\JobTrackingApp\JobAppManagement\JobApplicationsWebAPI
+2025-10-02 21:53:54.208 -04:00 [INF] Request starting HTTP/2 GET https://localhost:7040/swagger/index.html - null null
+2025-10-02 21:53:54.446 -04:00 [INF] Request finished HTTP/2 GET https://localhost:7040/swagger/index.html - 200 null text/html;charset=utf-8 238.6944ms
+2025-10-02 21:53:54.446 -04:00 [INF] Request starting HTTP/2 GET https://localhost:7040/_framework/aspnetcore-browser-refresh.js - null null
+2025-10-02 21:53:54.464 -04:00 [INF] Request finished HTTP/2 GET https://localhost:7040/_framework/aspnetcore-browser-refresh.js - 200 16527 application/javascript; charset=utf-8 17.9876ms
+2025-10-02 21:53:54.541 -04:00 [INF] Request starting HTTP/2 GET https://localhost:7040/_vs/browserLink - null null
+2025-10-02 21:53:54.600 -04:00 [INF] Request finished HTTP/2 GET https://localhost:7040/_vs/browserLink - 200 null text/javascript; charset=UTF-8 58.8678ms
+2025-10-02 21:53:54.704 -04:00 [INF] Request starting HTTP/2 GET https://localhost:7040/swagger/v1/swagger.json - null null
+2025-10-02 21:53:54.738 -04:00 [INF] Request finished HTTP/2 GET https://localhost:7040/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 33.8507ms
+2025-10-02 21:54:32.588 -04:00 [INF] Request starting HTTP/2 GET https://localhost:7040/api/jobapplications - null null
+2025-10-02 21:54:32.615 -04:00 [INF] CORS policy execution successful.
+2025-10-02 21:54:32.620 -04:00 [INF] Executing endpoint 'JobApplicationsWebAPI.Controllers.JobApplicationsController.GetAll (JobApplicationsWebAPI)'
+2025-10-02 21:54:32.636 -04:00 [INF] Route matched with {action = "GetAll", controller = "JobApplications"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IEnumerable`1[JobApplicationsShared.Models.JobApplication]]] GetAll() on controller JobApplicationsWebAPI.Controllers.JobApplicationsController (JobApplicationsWebAPI).
+2025-10-02 21:54:32.760 -04:00 [INF] Fetching all job applications.
+2025-10-02 21:54:33.317 -04:00 [INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "j"."Id", "j"."Company", "j"."DateApplied", "j"."Location", "j"."Position", "j"."Status", "j"."UserId"
+FROM "JobApplications" AS "j"
+2025-10-02 21:54:33.372 -04:00 [INF] Retrieved 26 job applications.
+2025-10-02 21:54:33.378 -04:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[JobApplicationsShared.Models.JobApplication, JobApplicationsShared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-10-02 21:54:33.393 -04:00 [INF] Executed action JobApplicationsWebAPI.Controllers.JobApplicationsController.GetAll (JobApplicationsWebAPI) in 752.27ms
+2025-10-02 21:54:33.395 -04:00 [INF] Executed endpoint 'JobApplicationsWebAPI.Controllers.JobApplicationsController.GetAll (JobApplicationsWebAPI)'
+2025-10-02 21:54:33.403 -04:00 [INF] Request finished HTTP/2 GET https://localhost:7040/api/jobapplications - 200 null application/json; charset=utf-8 815.1ms
+2025-10-02 21:54:36.681 -04:00 [INF] Request starting HTTP/2 GET https://localhost:7040/api/jobapplications - null null
+2025-10-02 21:54:36.693 -04:00 [INF] CORS policy execution successful.
+2025-10-02 21:54:36.695 -04:00 [INF] Executing endpoint 'JobApplicationsWebAPI.Controllers.JobApplicationsController.GetAll (JobApplicationsWebAPI)'
+2025-10-02 21:54:36.697 -04:00 [INF] Route matched with {action = "GetAll", controller = "JobApplications"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IEnumerable`1[JobApplicationsShared.Models.JobApplication]]] GetAll() on controller JobApplicationsWebAPI.Controllers.JobApplicationsController (JobApplicationsWebAPI).
+2025-10-02 21:54:36.701 -04:00 [INF] Fetching all job applications.
+2025-10-02 21:54:36.714 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "j"."Id", "j"."Company", "j"."DateApplied", "j"."Location", "j"."Position", "j"."Status", "j"."UserId"
+FROM "JobApplications" AS "j"
+2025-10-02 21:54:36.718 -04:00 [INF] Retrieved 26 job applications.
+2025-10-02 21:54:36.719 -04:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[JobApplicationsShared.Models.JobApplication, JobApplicationsShared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-10-02 21:54:36.720 -04:00 [INF] Executed action JobApplicationsWebAPI.Controllers.JobApplicationsController.GetAll (JobApplicationsWebAPI) in 19.9891ms
+2025-10-02 21:54:36.724 -04:00 [INF] Executed endpoint 'JobApplicationsWebAPI.Controllers.JobApplicationsController.GetAll (JobApplicationsWebAPI)'
+2025-10-02 21:54:36.726 -04:00 [INF] Request finished HTTP/2 GET https://localhost:7040/api/jobapplications - 200 null application/json; charset=utf-8 45.7867ms
+2025-10-02 21:54:38.475 -04:00 [INF] Request starting HTTP/2 GET https://localhost:7040/api/jobapplications - null null
+2025-10-02 21:54:38.480 -04:00 [INF] CORS policy execution successful.
+2025-10-02 21:54:38.482 -04:00 [INF] Executing endpoint 'JobApplicationsWebAPI.Controllers.JobApplicationsController.GetAll (JobApplicationsWebAPI)'
+2025-10-02 21:54:38.484 -04:00 [INF] Route matched with {action = "GetAll", controller = "JobApplications"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IEnumerable`1[JobApplicationsShared.Models.JobApplication]]] GetAll() on controller JobApplicationsWebAPI.Controllers.JobApplicationsController (JobApplicationsWebAPI).
+2025-10-02 21:54:38.487 -04:00 [INF] Fetching all job applications.
+2025-10-02 21:54:38.534 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "j"."Id", "j"."Company", "j"."DateApplied", "j"."Location", "j"."Position", "j"."Status", "j"."UserId"
+FROM "JobApplications" AS "j"
+2025-10-02 21:54:38.537 -04:00 [INF] Retrieved 26 job applications.
+2025-10-02 21:54:38.539 -04:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[JobApplicationsShared.Models.JobApplication, JobApplicationsShared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-10-02 21:54:38.541 -04:00 [INF] Executed action JobApplicationsWebAPI.Controllers.JobApplicationsController.GetAll (JobApplicationsWebAPI) in 55.5167ms
+2025-10-02 21:54:38.543 -04:00 [INF] Executed endpoint 'JobApplicationsWebAPI.Controllers.JobApplicationsController.GetAll (JobApplicationsWebAPI)'
+2025-10-02 21:54:38.544 -04:00 [INF] Request finished HTTP/2 GET https://localhost:7040/api/jobapplications - 200 null application/json; charset=utf-8 69.0639ms

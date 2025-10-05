@@ -1,0 +1,40 @@
+﻿
+
+<div class="modal fade show d-block" style="background-color: rgba(0,0,0,0.5);"
+     hidden="@(!IsVisible)">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">@Title</h5>
+                <button type="button" class="btn-close" @onclick="Cancel"></button>
+            </div>
+            <div class="modal-body">
+                @Message
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-danger" @onclick="Confirm">Yes</button>
+                <button class="btn btn-secondary" @onclick="Cancel">No</button>               
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter] public string Title { get; set; } = "Confirm";
+    [Parameter] public string Message { get; set; } = "Are you sure?";
+    [Parameter] public EventCallback<bool> OnResult { get; set; }
+    [Parameter] public bool IsVisible { get; set; }
+
+    private async Task Confirm()
+    {
+        IsVisible = false;
+        await OnResult.InvokeAsync(true);
+    }
+
+    private async Task Cancel()
+    {
+        IsVisible = false;
+        await OnResult.InvokeAsync(false);
+    }
+}
+

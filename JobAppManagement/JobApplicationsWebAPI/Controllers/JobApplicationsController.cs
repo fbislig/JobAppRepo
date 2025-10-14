@@ -64,12 +64,25 @@ namespace JobApplicationsWebAPI.Controllers
         {
             _logger.LogInformation("Received request to create a new job application for company: {Company}, position: {Position}", job.Company, job.Position);
 
+            // Normalize input for case-insensitive comparison
+            var company = job.Company.Trim().ToLower();
+            var position = job.Position.Trim().ToLower();
+
+            // Check if job already exists
+            bool exists = await _repository.JobExistsAsync(company, position);
+            if (exists)
+            {
+                _logger.LogWarning("Job application already exists for company: {Company}, position: {Position}", job.Company, job.Position);
+                return Conflict("Job application already exists.");
+            }
+
             var created = await _repository.AddJobApplicationAsync(job);
 
             _logger.LogInformation("Successfully created job application with ID {Id}", created.Id);
 
             return CreatedAtAction(nameof(GetById), new { id = created.Id }, created);
         }
+
 
 
         // PUT: api/jobapplications/{id}

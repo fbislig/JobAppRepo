@@ -59,17 +59,13 @@
                 <ValidationMessage For="@(() => newJob.DateApplied)" />
             </div>
 
-           @*  <div class="mb-2">
-                <label>Status</label>
-                <InputSelect class="form-select" @bind-Value="newJob.Status">
-                    @foreach (var status in Enum.GetValues<Status>())
-                    {
-                        <option value="@status">@status</option>
-                    }
-                </InputSelect>
-                <ValidationMessage For="@(() => newJob.Status)" />
-            </div> *@
-
+           
+            @if (!string.IsNullOrEmpty(errorMessage))
+            {
+                <div class="alert alert-warning" role="alert">
+                    @errorMessage
+                </div>
+            }
             <button type="submit" class="btn btn-success">Add Job</button>
         </EditForm>
     </div>
@@ -208,7 +204,10 @@
                   OnResult="OnDeleteResult" />
 }
 
+
+
 @code {
+    private string errorMessage;
     private List<JobApplication>? jobApplications;
     private JobApplication newJob = new();
     private JobApplication? editJob;
@@ -238,10 +237,10 @@
             ApplyFilters();
         }
         catch (Exception ex)
-        {            
+        {
             Console.Error.WriteLine($"Fetch failed: {ex.Message}");
         }
-     
+
     }
 
     private void HandleFileSelected(InputFileChangeEventArgs e)
@@ -280,8 +279,31 @@
             selectedFileName = null;
         }
     }
+
     private async Task AddJob()
     {
+        // Check for duplicate
+        bool exists = jobApplications.Any(j =>
+         j.Company.Trim().Equals(newJob.Company.Trim(), StringComparison.OrdinalIgnoreCase) &&
+         j.Position.Trim().Equals(newJob.Position.Trim(), StringComparison.OrdinalIgnoreCase));
+
+
+        if (exists)
+        {
+            errorMessage = "This job application already exists.";
+            await InvokeAsync(StateHasChanged);
+
+            // Auto-hide after 2 seconds
+            _ = Task.Run(async () =>
+            {
+                await Task.Delay(2000);
+                errorMessage = null;
+                await InvokeAsync(StateHasChanged);
+            });
+
+            return;
+        }
+
         var addedJob = await JobApplicationService.AddJobAsync(newJob);
         if (addedJob != null)
         {
@@ -295,24 +317,19 @@
             }
 
             LastAddedJobId = addedJob.Id;
-            StateHasChanged();
+            await InvokeAsync(StateHasChanged);
 
-            // Optional: remove highlight after 3 seconds
-            _ = Task.Delay(3000).ContinueWith(_ =>
+            _ = Task.Run(async () =>
             {
+                await Task.Delay(3000);
                 LastAddedJobId = null;
-                InvokeAsync(StateHasChanged);
+                await InvokeAsync(StateHasChanged);
             });
         }
-        // Reset the form for next add WITH default Status
-        newJob = new JobApplication
-        {
-            Status = Status.Applied   // 👈 set your default here
-        }; 
 
-
-        
+        newJob = new JobApplication { Status = Status.Applied };
     }
+
 
     private void EditJob(JobApplication job)
     {
@@ -327,7 +344,7 @@
         };
     }
 
-    
+
     private async Task SaveEdit()
     {
         if (editJob is null) return;
@@ -393,7 +410,7 @@
             : query.OrderByDescending(j => GetPropertyValue(j, currentSortColumn));
 
         filteredJobs = query.ToList();
-         currentPage = 1; // reset to first page
+        currentPage = 1; // reset to first page
     }
 
     private object GetPropertyValue(JobApplication job, string propertyName)
@@ -468,7 +485,7 @@
         jobToDelete = null;
     }
 
-     
+
     private void FirstPage() => currentPage = 1;
     private void LastPage() => currentPage = totalPages;
     private void NextPage() { if (currentPage < totalPages) currentPage++; }

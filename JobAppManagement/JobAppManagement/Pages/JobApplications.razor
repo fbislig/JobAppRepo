@@ -13,17 +13,25 @@
 <div class="collapse" id="fileImportCollapse">
     <div class="card card-body mb-3">
         <InputFile OnChange="HandleFileSelected" accept=".xlsx" />
+
         @if (!string.IsNullOrEmpty(selectedFileName))
         {
-            <div class="mt-2">
-                <strong>Selected File:</strong> @selectedFileName
-            </div>
+          
             <button class="btn btn-success mt-2" @onclick="UploadFile" disabled="@isUploading">
                 @(isUploading ? "Uploading..." : "Upload")
             </button>
+           
+        }
+        @* ✅ Import message shown after upload *@
+        @if (!string.IsNullOrEmpty(importMessage))
+        {
+            <div class="alert alert-info mt-3" role="alert">
+                @importMessage
+            </div>
         }
     </div>
 </div>
+
 
 <!-- Collapsible Add Job Button -->
 <button class="btn btn-primary mb-3" type="button" data-bs-toggle="collapse" data-bs-target="#addJobCollapse" aria-expanded="false" aria-controls="addJobCollapse">
@@ -208,6 +216,7 @@
 
 @code {
     private string errorMessage;
+    private string importMessage;
     private List<JobApplication>? jobApplications;
     private JobApplication newJob = new();
     private JobApplication? editJob;
@@ -262,11 +271,22 @@
             content.Add(new StreamContent(stream), "file", uploadedFile.Name);
 
             // Call your API (add ImportJobsAsync to your JobApplicationService)
-            await JobApplicationService.ImportJobsAsync(uploadedFile);
+            int importedCount = await JobApplicationService.ImportJobsAsync(uploadedFile);
 
             // Refresh jobs after import
             jobApplications = await JobApplicationService.GetAllJobsAsync();
             ApplyFilters();
+
+            // Show message
+            importMessage = $"{importedCount} job application(s) imported.";
+
+            // Auto-hide after 3 seconds
+            _ = Task.Run(async () =>
+            {
+                await Task.Delay(3000);
+                importMessage = null;
+                await InvokeAsync(StateHasChanged);
+            });
         }
         catch (Exception ex)
         {

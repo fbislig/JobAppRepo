@@ -34,19 +34,28 @@ namespace JobAppManagement.Services
         public async Task DeleteJobAsync(int id) =>
             await _http.DeleteAsync($"api/jobapplications/{id}");
 
-        public async Task<bool> ImportJobsAsync(IBrowserFile file)
+        public async Task<int> ImportJobsAsync(IBrowserFile file)
         {
-            if (file == null) return false;
+            if (file == null) return 0;
 
-            // Prepare multipart form data
             using var content = new MultipartFormDataContent();
-            using var stream = file.OpenReadStream(maxAllowedSize: 10 * 1024 * 1024); // 10 MB max
+            using var stream = file.OpenReadStream(maxAllowedSize: 10 * 1024 * 1024);
             content.Add(new StreamContent(stream), "file", file.Name);
 
-            // Send POST request to API
             var response = await _http.PostAsync("api/jobapplications/import", content);
 
-            return response.IsSuccessStatusCode;
+            if (!response.IsSuccessStatusCode)
+                return 0;
+
+            // Assuming the API returns the count as plain text or JSON number
+            var countString = await response.Content.ReadAsStringAsync();
+            if (int.TryParse(countString, out int importedCount))
+            {
+                return importedCount;
+            }
+
+            return 0;
         }
+
     }
 }

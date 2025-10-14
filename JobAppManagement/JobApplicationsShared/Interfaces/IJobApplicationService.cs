@@ -10,7 +10,7 @@ namespace JobApplicationsShared.Interfaces
         Task<JobApplication?> AddJobAsync(JobApplication job);
         Task UpdateJobAsync(JobApplication job);
         Task DeleteJobAsync(int id);
-        Task<bool> ImportJobsAsync(IBrowserFile file);
+        Task<int> ImportJobsAsync(IBrowserFile file);
 
 
     }

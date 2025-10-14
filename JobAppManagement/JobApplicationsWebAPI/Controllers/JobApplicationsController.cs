@@ -4,6 +4,7 @@ using JobApplicationsShared.Enums;
 using JobApplicationsShared.Models;
 using JobApplicationsWebAPI.Repositories;
 using Microsoft.AspNetCore.Mvc;
+using System.Globalization;
 
 
 namespace JobApplicationsWebAPI.Controllers
@@ -122,7 +123,6 @@ namespace JobApplicationsWebAPI.Controllers
             return NoContent();
         }
 
-
         [HttpPost("import")]
         public async Task<IActionResult> Import(IFormFile file)
         {
@@ -131,8 +131,8 @@ namespace JobApplicationsWebAPI.Controllers
                 _logger.LogWarning("Import failed: No file uploaded.");
                 return BadRequest("No file uploaded.");
             }
-            _logger.LogInformation("Starting import of job applications.");
 
+            _logger.LogInformation("Starting import of job applications.");
             var importedJobs = new List<JobApplication>();
 
             using var stream = new MemoryStream();
@@ -146,6 +146,8 @@ namespace JobApplicationsWebAPI.Controllers
             var headers = headerRow.CellsUsed()
                 .ToDictionary(c => c.Address.ColumnNumber, c => c.GetString().Trim().ToLowerInvariant());
 
+            bool hasPositionColumn = headers.Values.Contains("position");
+
             foreach (var row in worksheet.RowsUsed().Skip(1))
             {
                 var jobApp = new JobApplication();
@@ -157,62 +159,77 @@ namespace JobApplicationsWebAPI.Controllers
 
                     switch (header)
                     {
-                        case "company": jobApp.Company = cell.GetString(); break;
-                        case "position": jobApp.Position = cell.GetString(); break;
-                        case "location": jobApp.Location = cell.GetString(); break;
+                        case "company":
+                            jobApp.Company = cell.GetString();
+                            break;
+
+                        case "position":
+                            jobApp.Position = cell.GetString();
+                            break;
+
+                        case "location":
+                            jobApp.Location = cell.GetString();
+                            break;
+
                         case "date":
                             string cellValue = cell.GetString().Trim();
 
-                            // First, try reading as Excel date (DateTime type)
                             if (cell.DataType == XLDataType.DateTime)
                             {
-                                jobApp.DateApplied = cell.GetDateTime().Date; // strip time
+                                jobApp.DateApplied = cell.GetDateTime().Date;
                             }
                             else if (DateTime.TryParseExact(cellValue, "MM/dd/yyyy",
-                                         System.Globalization.CultureInfo.InvariantCulture,
-                                         System.Globalization.DateTimeStyles.None,
+                                         CultureInfo.InvariantCulture,
+                                         DateTimeStyles.None,
                                          out var parsedDate))
                             {
                                 jobApp.DateApplied = parsedDate.Date;
                             }
-                            else
+                            else if (DateTime.TryParse(cellValue, out var fallbackDate))
                             {
-                                // fallback parse
-                                if (DateTime.TryParse(cellValue, out var fallbackDate))
-                                    jobApp.DateApplied = fallbackDate.Date;
+                                jobApp.DateApplied = fallbackDate.Date;
                             }
                             break;
+
                         case "status":
                             if (Enum.TryParse<Status>(cell.GetString(), true, out var status))
                                 jobApp.Status = status;
                             break;
-                        case "userid": jobApp.UserId = cell.GetString(); break;
+
+                        case "userid":
+                            jobApp.UserId = cell.GetString();
+                            break;
                     }
                 }
 
-                // Only add if required fields are present
-                if (string.IsNullOrWhiteSpace(jobApp.Company) || string.IsNullOrWhiteSpace(jobApp.Position))
+                // Assign default if position column is missing or value is blank
+                if (!hasPositionColumn || string.IsNullOrWhiteSpace(jobApp.Position))
+                {
+                    jobApp.Position = "Not Specified";
+                }
+
+                // Skip if company is missing
+                if (string.IsNullOrWhiteSpace(jobApp.Company))
                     continue;
 
-                // **Check if job already exists in the database**
+                // Skip if job already exists
                 if (!await _repository.JobExistsAsync(jobApp.Company, jobApp.Position))
                 {
                     importedJobs.Add(jobApp);
                 }
             }
 
-            // Save all new jobs to the database
             if (importedJobs.Any())
             {
                 var inserted = await _repository.AddJobApplicationsAsync(importedJobs);
-                _logger.LogInformation("File successfully imported.");
-
+                _logger.LogInformation($"File successfully imported. {inserted} new job(s) added.");
                 return Ok(new { Inserted = inserted });
             }
 
             _logger.LogInformation("No records imported.");
             return Ok(new { Inserted = 0, Message = "No new jobs to import." });
         }
+
 
 
     }

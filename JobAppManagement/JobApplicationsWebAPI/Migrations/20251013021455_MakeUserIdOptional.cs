@@ -5,31 +5,31 @@
 namespace JobApplicationsWebAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class MakeLocationNullable : Migration
+    public partial class MakeUserIdOptional : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AlterColumn<string>(
-                name: "Location",
+                name: "UserId",
                 table: "JobApplications",
-                type: "TEXT",
+                type: "nvarchar(max)",
                 nullable: true,
                 oldClrType: typeof(string),
-                oldType: "TEXT");
+                oldType: "nvarchar(max)");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AlterColumn<string>(
-                name: "Location",
+                name: "UserId",
                 table: "JobApplications",
-                type: "TEXT",
+                type: "nvarchar(max)",
                 nullable: false,
                 defaultValue: "",
                 oldClrType: typeof(string),
-                oldType: "TEXT",
+                oldType: "nvarchar(max)",
                 oldNullable: true);
         }
     }

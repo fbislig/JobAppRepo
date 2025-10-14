@@ -19,12 +19,12 @@ string apiBaseUrl;
 if (builder.HostEnvironment.IsDevelopment())
 {
     // Local development: use value from appsettings.json
-    apiBaseUrl = builder.Configuration["ApiBaseUrl"] ?? "https://localhost:7040";
+    apiBaseUrl = "https://localhost:7040";
 }
 else
 {
     // Production: use SWA-relative path or full API endpoint
-    apiBaseUrl = "https://your-api.azurewebsites.net"; // Replace with your actual deployed API URL
+    apiBaseUrl = builder.Configuration["ApiBaseUrl"] ?? "https://jobapplicationswebapi20251014121824-h8eybrhkgzgwapb7.canadacentral-01.azurewebsites.net/";   
 }
 
 if (!apiBaseUrl.EndsWith("/"))

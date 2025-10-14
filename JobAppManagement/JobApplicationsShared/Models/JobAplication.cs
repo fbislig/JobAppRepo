@@ -15,6 +15,6 @@ namespace JobApplicationsShared.Models
         public string? Location { get; set; }
         public DateTime DateApplied { get; set; } = DateTime.Today;
         public Status Status { get; set; } = Status.Applied;
-        public string UserId { get; set; } = string.Empty;
+        public string? UserId { get; set; } = string.Empty;
     }
 }

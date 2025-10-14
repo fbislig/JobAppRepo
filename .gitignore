@@ -6,4 +6,9 @@ bin/
 obj/
 *.user
 *.suo
+Logs/
+Properties/PublishProfiles/
+Properties/ServiceDependencies/
 
+
+/JobAppManagement/JobApplicationsWebAPI/Properties

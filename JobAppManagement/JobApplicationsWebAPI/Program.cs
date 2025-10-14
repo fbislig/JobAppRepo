@@ -4,16 +4,14 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Builder;
 using Serilog;
 
-Log.Logger = new LoggerConfiguration()
-    .WriteTo.Console()
-    .WriteTo.File("Logs/log.txt", rollingInterval: RollingInterval.Day)
-    .Enrich.FromLogContext()
-    .MinimumLevel.Information()
-    .CreateLogger();
+
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Host.UseSerilog();
 
+Log.Logger = new LoggerConfiguration()
+    .ReadFrom.Configuration(builder.Configuration)
+    .CreateLogger();
+builder.Host.UseSerilog();
 
 builder.Logging.ClearProviders();
 builder.Logging.AddConsole();
@@ -38,8 +36,15 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 // Add DbContext for SQLite
+//builder.Services.AddDbContext<JobApplicationDbContext>(options =>
+//    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+
 builder.Services.AddDbContext<JobApplicationDbContext>(options =>
-    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseSqlServer(
+        builder.Configuration.GetConnectionString("DefaultConnection"),
+        sqlOptions => sqlOptions.EnableRetryOnFailure()
+    ));
 
 // Register repository for DI
 builder.Services.AddScoped<IJobApplicationRepository, JobApplicationRepository>();

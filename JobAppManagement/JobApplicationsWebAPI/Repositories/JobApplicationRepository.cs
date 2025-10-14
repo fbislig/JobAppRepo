@@ -66,9 +66,9 @@ namespace JobApplicationsWebAPI.Repositories
         public async Task<bool> JobExistsAsync(string company, string position/*, DateTime dateApplied*/)
         {
             return await _context.JobApplications
-                .AnyAsync(j => j.Company == company
-                            && j.Position == position
-                           /* && j.DateApplied.Date == dateApplied.Date*/);
+    .AnyAsync(j => j.Company.ToLower() == company.ToLower()
+                && j.Position.ToLower() == position.ToLower());
+
         }
 
 

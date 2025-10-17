@@ -5,6 +5,11 @@ using System.Net.Http.Json;
 
 namespace JobAppManagement.Services
 {
+    public class ImportResult
+    {
+        public int Inserted { get; set; }
+    }
+
     public class JobApplicationService : IJobApplicationService
     {
         private readonly HttpClient _http;
@@ -47,15 +52,10 @@ namespace JobAppManagement.Services
             if (!response.IsSuccessStatusCode)
                 return 0;
 
-            // Assuming the API returns the count as plain text or JSON number
-            var countString = await response.Content.ReadAsStringAsync();
-            if (int.TryParse(countString, out int importedCount))
-            {
-                return importedCount;
-            }
-
-            return 0;
+            var result = await response.Content.ReadFromJsonAsync<ImportResult>();
+            return result?.Inserted ?? 0;
         }
+
 
     }
 }

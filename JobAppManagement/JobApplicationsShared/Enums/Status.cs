@@ -8,6 +8,7 @@
         Ghosted,
         Offered,
         Rejected,
-        Accepted
+        Accepted,
+        NotSelected
     }
 }

@@ -3,7 +3,7 @@
 
 @inject IJobApplicationService JobApplicationService
 
-<h3>Job Application Status Statistics</h3>
+<h3>Job Application Status</h3>
 
 @if (StatusStats == null)
 {
@@ -15,6 +15,8 @@ else if (!StatusStats.Any())
 }
 else
 {
+   
+
     <table class="table table-striped mt-4">
         <thead>
             <tr>
@@ -34,15 +36,18 @@ else
             }
         </tbody>
     </table>
+    <p><strong>Total Applications:</strong> @TotalCount</p>
 }
+
 
 @code {
     private List<JobStatusStat>? StatusStats;
+    private int TotalCount;
 
     protected override async Task OnInitializedAsync()
     {
         var jobs = await JobApplicationService.GetAllJobsAsync();
-        var total = jobs.Count;
+        TotalCount = jobs.Count;
 
         StatusStats = jobs
             .GroupBy(j => j.Status.ToString())
@@ -50,10 +55,11 @@ else
             {
                 Status = g.Key,
                 Count = g.Count(),
-                Percentage = total > 0 ? (double)g.Count() / total * 100 : 0
+                Percentage = TotalCount > 0 ? (double)g.Count() / TotalCount * 100 : 0
             })
             .ToList();
     }
+
 
     private class JobStatusStat
     {

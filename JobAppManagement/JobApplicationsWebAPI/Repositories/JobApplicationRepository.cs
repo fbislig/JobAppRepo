@@ -71,6 +71,13 @@ namespace JobApplicationsWebAPI.Repositories
 
         }
 
+        public async Task<bool> CompanyExistsAsync(string company)
+        {
+            return await _context.JobApplications
+                .AnyAsync(j => j.Company.ToLower() == company.ToLower());
+        }
+
+
 
     }
 }

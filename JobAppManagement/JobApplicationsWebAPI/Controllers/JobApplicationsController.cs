@@ -202,21 +202,35 @@ namespace JobApplicationsWebAPI.Controllers
                     }
                 }
 
-                // Assign default if position column is missing or value is blank
-                if (!hasPositionColumn || string.IsNullOrWhiteSpace(jobApp.Position))
-                {
-                    jobApp.Position = "Not Specified";
-                }
-
-                // Skip if company is missing
+                // Skip if company name is missing
                 if (string.IsNullOrWhiteSpace(jobApp.Company))
                     continue;
 
-                // Skip if job already exists
+                // Check if the company already exists (regardless of position)
+                bool companyExists = await _repository.CompanyExistsAsync(jobApp.Company);
+
+                // Handle missing position logic more carefully
+                if (string.IsNullOrWhiteSpace(jobApp.Position))
+                {
+                    if (companyExists)
+                    {
+                        // Skip adding this record since the company already exists
+                        _logger.LogInformation($"Skipped row: Company '{jobApp.Company}' already exists and position not specified.");
+                        continue;
+                    }
+                    else
+                    {
+                        // Only assign default if company is new
+                        jobApp.Position = "Not Specified";
+                    }
+                }
+
+                // Skip if exact job (company + position) already exists
                 if (!await _repository.JobExistsAsync(jobApp.Company, jobApp.Position))
                 {
                     importedJobs.Add(jobApp);
                 }
+
             }
 
             if (importedJobs.Any())

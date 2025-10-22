@@ -11,5 +11,6 @@ namespace JobApplicationsWebAPI.Repositories
         Task<bool> DeleteJobApplicationAsync(int id);
         Task<int> AddJobApplicationsAsync(IEnumerable<JobApplication> jobs);
         Task<bool> JobExistsAsync(string company, string position);
+        Task<bool> CompanyExistsAsync(string company);
     }
 }

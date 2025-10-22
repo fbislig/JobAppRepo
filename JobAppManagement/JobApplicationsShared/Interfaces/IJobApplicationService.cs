@@ -13,5 +13,6 @@ namespace JobApplicationsShared.Interfaces
         Task<int> ImportJobsAsync(IBrowserFile file);
 
 
+
     }
 }

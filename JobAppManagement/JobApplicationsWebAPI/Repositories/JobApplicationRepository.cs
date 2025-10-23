@@ -1,16 +1,19 @@
 ﻿using JobApplicationsShared.Models;
 using JobApplicationsWebAPI.Data;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace JobApplicationsWebAPI.Repositories
 {
     public class JobApplicationRepository : IJobApplicationRepository
     {
         private readonly JobApplicationDbContext _context;
+        private readonly ILogger<JobApplicationRepository> _logger;
 
-        public JobApplicationRepository(JobApplicationDbContext context)
+        public JobApplicationRepository(JobApplicationDbContext context, ILogger<JobApplicationRepository> logger)
         {
             _context = context;
+            _logger = logger;
         }
 
         public async Task<List<JobApplication>> GetJobApplicationsAsync()
@@ -58,9 +61,30 @@ namespace JobApplicationsWebAPI.Repositories
         // New method to add multiple job applications
         public async Task<int> AddJobApplicationsAsync(IEnumerable<JobApplication> jobs)
         {
-            _context.JobApplications.AddRange(jobs);
-            var inserted = await _context.SaveChangesAsync();
-            return inserted; // number of rows inserted
+            try
+            {
+                if (jobs == null || !jobs.Any())
+                {
+                    _logger.LogWarning("AddJobApplicationsAsync called with empty or null job list.");
+                    return 0;
+                }
+
+                _context.JobApplications.AddRange(jobs);
+                var inserted = await _context.SaveChangesAsync();
+
+                _logger.LogInformation($"{inserted} job application(s) successfully saved to database.");
+                return inserted;
+            }
+            catch (DbUpdateException ex)
+            {
+                _logger.LogError(ex, "Database update failed while adding job applications.");
+                throw;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Unexpected error occurred while adding job applications.");
+                throw;
+            }
         }
 
         public async Task<bool> JobExistsAsync(string company, string position/*, DateTime dateApplied*/)

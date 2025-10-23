@@ -135,116 +135,98 @@ namespace JobApplicationsWebAPI.Controllers
             _logger.LogInformation("Starting import of job applications.");
             var importedJobs = new List<JobApplication>();
 
-            using var stream = new MemoryStream();
-            await file.CopyToAsync(stream);
-            stream.Position = 0;
-
-            using var workbook = new XLWorkbook(stream);
-            var worksheet = workbook.Worksheets.First();
-            var headerRow = worksheet.Row(1);
-
-            var headers = headerRow.CellsUsed()
-                .ToDictionary(c => c.Address.ColumnNumber, c => c.GetString().Trim().ToLowerInvariant());
-
-            bool hasPositionColumn = headers.Values.Contains("position");
-
-            foreach (var row in worksheet.RowsUsed().Skip(1))
+            try
             {
-                var jobApp = new JobApplication();
+                using var stream = new MemoryStream();
+                await file.CopyToAsync(stream);
+                stream.Position = 0;
 
-                foreach (var cell in row.CellsUsed())
+                using var workbook = new XLWorkbook(stream);
+                var worksheet = workbook.Worksheets.First();
+                var headerRow = worksheet.Row(1);
+
+                var headers = headerRow.CellsUsed()
+                    .ToDictionary(c => c.Address.ColumnNumber, c => c.GetString().Trim().ToLowerInvariant());
+
+                bool hasPositionColumn = headers.Values.Contains("position");
+
+                foreach (var row in worksheet.RowsUsed().Skip(1))
                 {
-                    if (!headers.TryGetValue(cell.Address.ColumnNumber, out string header))
+                    var jobApp = new JobApplication();
+
+                    foreach (var cell in row.CellsUsed())
+                    {
+                        if (!headers.TryGetValue(cell.Address.ColumnNumber, out string header))
+                            continue;
+
+                        switch (header)
+                        {
+                            case "company":
+                                jobApp.Company = cell.GetString();
+                                break;
+                            case "position":
+                                jobApp.Position = cell.GetString();
+                                break;
+                            case "location":
+                                jobApp.Location = cell.GetString();
+                                break;
+                            case "date":
+                                string cellValue = cell.GetString().Trim();
+                                if (cell.DataType == XLDataType.DateTime)
+                                    jobApp.DateApplied = cell.GetDateTime().Date;
+                                else if (DateTime.TryParseExact(cellValue, "MM/dd/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out var parsedDate))
+                                    jobApp.DateApplied = parsedDate.Date;
+                                else if (DateTime.TryParse(cellValue, out var fallbackDate))
+                                    jobApp.DateApplied = fallbackDate.Date;
+                                break;
+                            case "status":
+                                if (Enum.TryParse<Status>(cell.GetString(), true, out var status))
+                                    jobApp.Status = status;
+                                break;
+                            case "userid":
+                                jobApp.UserId = cell.GetString();
+                                break;
+                        }
+                    }
+
+                    if (string.IsNullOrWhiteSpace(jobApp.Company))
                         continue;
 
-                    switch (header)
+                    bool companyExists = await _repository.CompanyExistsAsync(jobApp.Company);
+
+                    if (string.IsNullOrWhiteSpace(jobApp.Position))
                     {
-                        case "company":
-                            jobApp.Company = cell.GetString();
-                            break;
-
-                        case "position":
-                            jobApp.Position = cell.GetString();
-                            break;
-
-                        case "location":
-                            jobApp.Location = cell.GetString();
-                            break;
-
-                        case "date":
-                            string cellValue = cell.GetString().Trim();
-
-                            if (cell.DataType == XLDataType.DateTime)
-                            {
-                                jobApp.DateApplied = cell.GetDateTime().Date;
-                            }
-                            else if (DateTime.TryParseExact(cellValue, "MM/dd/yyyy",
-                                         CultureInfo.InvariantCulture,
-                                         DateTimeStyles.None,
-                                         out var parsedDate))
-                            {
-                                jobApp.DateApplied = parsedDate.Date;
-                            }
-                            else if (DateTime.TryParse(cellValue, out var fallbackDate))
-                            {
-                                jobApp.DateApplied = fallbackDate.Date;
-                            }
-                            break;
-
-                        case "status":
-                            if (Enum.TryParse<Status>(cell.GetString(), true, out var status))
-                                jobApp.Status = status;
-                            break;
-
-                        case "userid":
-                            jobApp.UserId = cell.GetString();
-                            break;
-                    }
-                }
-
-                // Skip if company name is missing
-                if (string.IsNullOrWhiteSpace(jobApp.Company))
-                    continue;
-
-                // Check if the company already exists (regardless of position)
-                bool companyExists = await _repository.CompanyExistsAsync(jobApp.Company);
-
-                // Handle missing position logic more carefully
-                if (string.IsNullOrWhiteSpace(jobApp.Position))
-                {
-                    if (companyExists)
-                    {
-                        // Skip adding this record since the company already exists
-                        _logger.LogInformation($"Skipped row: Company '{jobApp.Company}' already exists and position not specified.");
-                        continue;
-                    }
-                    else
-                    {
-                        // Only assign default if company is new
+                        if (companyExists)
+                        {
+                            _logger.LogInformation($"Skipped row: Company '{jobApp.Company}' already exists and position not specified.");
+                            continue;
+                        }
                         jobApp.Position = "Not Specified";
                     }
+
+                    if (!await _repository.JobExistsAsync(jobApp.Company, jobApp.Position))
+                        importedJobs.Add(jobApp);
                 }
 
-                // Skip if exact job (company + position) already exists
-                if (!await _repository.JobExistsAsync(jobApp.Company, jobApp.Position))
+                _logger.LogInformation("Prepared {Count} jobs for insertion.", importedJobs.Count);
+
+                if (importedJobs.Any())
                 {
-                    importedJobs.Add(jobApp);
+                    _logger.LogInformation("Attempting to insert jobs into database...");
+                    var inserted = await _repository.AddJobApplicationsAsync(importedJobs);
+                    _logger.LogInformation("File successfully imported. {Count} new job(s) added.", inserted);
+                    return Ok(new { Inserted = inserted });
                 }
 
+                _logger.LogInformation("No records imported (0 new jobs).");
+                return Ok(new { Inserted = 0, Message = "No new jobs to import." });
             }
-
-            if (importedJobs.Any())
+            catch (Exception ex)
             {
-                var inserted = await _repository.AddJobApplicationsAsync(importedJobs);
-                _logger.LogInformation($"File successfully imported. {inserted} new job(s) added.");
-                return Ok(new { Inserted = inserted });
+                _logger.LogError(ex, "Error occurred during import process.");
+                return StatusCode(500, "An error occurred while importing the file.");
             }
-
-            _logger.LogInformation("No records imported.");
-            return Ok(new { Inserted = 0, Message = "No new jobs to import." });
         }
-
-
 
     }
 }
